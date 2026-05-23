@@ -3,17 +3,16 @@ export const navLinks = [
       route: '/',
       label: 'Home',
     },
-  
     {
-      route: '/Curriculumn',
-      label: 'Curriculumn',
+      route: '/curriculum',
+      label: 'Curriculum',
     },
     {
-      route: '/Gallery',
+      route: '/gallery',
       label: 'Gallery',
     },
     {
-      route: '/Staff',
+      route: '/staff',
       label: 'Staff',
     },
   ];

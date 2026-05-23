@@ -1,6 +1,6 @@
 import NavBar from "@/components/NavBar"
+import Footer from "@/components/Footer"
 import React from "react"
-
 
 const Home = async ({
     children
@@ -15,6 +15,7 @@ const Home = async ({
 
             {children}
 
+            <Footer />
         </main>
     )
 

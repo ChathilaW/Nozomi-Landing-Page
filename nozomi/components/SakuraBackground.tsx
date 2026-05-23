@@ -72,7 +72,7 @@ const SakuraBackground = () => {
   };
 
   return (
-    <div className="absolute inset-0 w-full h-full pointer-events-none" style={{ mixBlendMode: 'screen', zIndex: 0 }}>
+    <>
       <style>{`
         @keyframes fall-down {
           0% { transform: translateY(-20vh); }
@@ -106,13 +106,12 @@ const SakuraBackground = () => {
           height: 100%;
           animation-timing-function: ease-in-out;
           animation-iteration-count: infinite;
-          color: black;
           will-change: transform;
         }
       `}</style>
 
-      {/* Scrolling White Background with Hexagon Edge */}
-      <div className="absolute inset-0 w-full h-full flex flex-col">
+      {/* Scrolling White Background with Hexagon Edge (Behind Content) */}
+      <div className="absolute inset-0 w-full h-full flex flex-col z-0 pointer-events-none">
         <div className="relative w-full h-[120px] overflow-hidden shrink-0 -mb-[1px]">
           <svg viewBox="0 0 3200 120" className="absolute left-0 bottom-0 w-[3200px] h-[120px] max-w-none">
             <path d={fillPath} fill="white" />
@@ -121,14 +120,13 @@ const SakuraBackground = () => {
         <div className="flex-1 w-full bg-white" />
       </div>
 
-      {/* Viewport-Fixed Black Petals */}
-      {/* mix-blend-mode naturally hides them over transparent areas, so they magically appear exactly at the white SVG boundary! */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none" style={{ perspective: '1000px' }}>
+      {/* Viewport-Fixed Pink Petals (In Front of Content) */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none z-20 mix-blend-multiply" style={{ perspective: '1000px' }}>
         <div className="sticky top-0 w-full h-screen pointer-events-none overflow-hidden">
           {petals.map(p => (
             <div
               key={p.id}
-              className="petal-wrapper"
+              className="petal-wrapper text-pink-300"
               style={{
                 left: `${p.left}%`,
                 width: `${p.size}px`,
@@ -153,8 +151,8 @@ const SakuraBackground = () => {
           ))}
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
-      export default SakuraBackground;
+export default SakuraBackground;
