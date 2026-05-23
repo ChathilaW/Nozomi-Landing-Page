@@ -4,20 +4,25 @@ import MainMenu from "@/components/MainMenu"
 
 const HomePage = () => {
     return (
-        <>
-            {/* Full-screen hero video */}
-            <HeroVideo />
+        <div className="relative w-full">
+            {/* Sticky Hero Video Container */}
+            <div className="sticky top-0 w-full h-screen z-0">
+                <HeroVideo />
+            </div>
 
-            {/* Full-screen About section */}
-            <AboutSection />
+            {/* Content that scrolls OVER the Hero Video */}
+            <div className="relative z-10">
+                {/* Full-screen About section with shape divider at the top */}
+                <AboutSection />
 
-            {/* The rest of your page content below */}
-            <div className="flex flex-col gap-32 pt-20 pl-10 items-center max-md:gap-10 md:flex-row animate-fade-in">
-                <div className="flex-1">
-                    <MainMenu />
+                {/* The rest of your page content below */}
+                <div className="w-full bg-white flex flex-col gap-32 pt-20 pl-10 pb-20 items-center max-md:gap-10 md:flex-row animate-fade-in">
+                    <div className="flex-1 w-full">
+                        <MainMenu />
+                    </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
