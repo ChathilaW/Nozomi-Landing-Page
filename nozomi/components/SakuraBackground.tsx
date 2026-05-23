@@ -121,7 +121,7 @@ const SakuraBackground = () => {
       </div>
 
       {/* Viewport-Fixed Pink Petals (In Front of Content) */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none z-20 mix-blend-multiply" style={{ perspective: '1000px' }}>
+      <div className="absolute left-0 right-0 bottom-0 top-[120px] pointer-events-none z-20 mix-blend-multiply" style={{ perspective: '1000px' }}>
         <div className="sticky top-0 w-full h-screen pointer-events-none overflow-hidden">
           {petals.map(p => (
             <div

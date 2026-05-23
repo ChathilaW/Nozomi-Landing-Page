@@ -1,5 +1,6 @@
 import { BookOpen, Palette, Shapes, Music, Heart, Globe } from "lucide-react";
 import PlaceholderImage from "@/components/PlaceholderImage";
+import Footer from "@/components/Footer";
 
 const curriculumAreas = [
   {

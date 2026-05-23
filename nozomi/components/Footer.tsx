@@ -4,7 +4,7 @@ import { Phone, Mail, MapPin, Facebook, Instagram, Twitter } from 'lucide-react'
 
 const Footer = () => {
   return (
-    <footer className="bg-pink-50 pt-20 pb-10 px-8 md:px-20 text-gray-700 relative z-10 border-t border-pink-100 mt-20">
+    <footer className="bg-pink-50 pt-20 pb-10 px-8 md:px-20 text-gray-700 relative z-10 border-t border-pink-100">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
         {/* Brand */}
         <div className="flex flex-col gap-6">

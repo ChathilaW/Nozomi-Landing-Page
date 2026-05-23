@@ -1,4 +1,5 @@
 import PlaceholderImage from "@/components/PlaceholderImage";
+import Footer from "@/components/Footer";
 
 export default function GalleryPage() {
   return (
@@ -14,7 +15,7 @@ export default function GalleryPage() {
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto mb-20">
         {/* CSS columns for masonry-style layout */}
         <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
           
