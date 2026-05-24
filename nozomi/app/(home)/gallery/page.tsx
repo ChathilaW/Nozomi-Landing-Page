@@ -1,5 +1,6 @@
 import PlaceholderImage from "@/components/PlaceholderImage";
 import Footer from "@/components/Footer";
+import { galleryData } from "@/constants/gallery";
 
 export default function GalleryPage() {
   return (
@@ -15,65 +16,49 @@ export default function GalleryPage() {
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto mb-20">
-        {/* CSS columns for masonry-style layout */}
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-          
-          <div className="break-inside-avoid relative rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer group">
-            <div className="aspect-[4/3] w-full">
-              <PlaceholderImage text="Playground Fun" />
+      <div className="max-w-7xl mx-auto mb-20 space-y-32">
+        {galleryData.map((cat) => (
+          <div key={cat.slug} id={cat.slug} className="scroll-mt-32">
+            {/* Category Header */}
+            <div className="mb-10 text-center md:text-left">
+              <h2 className="text-4xl font-bold text-gray-800 mb-4">{cat.title}</h2>
+              <div className="h-1.5 w-24 bg-pink-300 mx-auto md:mx-0 rounded-full"></div>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-              <span className="text-white font-bold text-lg">Playground Fun</span>
+
+            {/* Cover Image */}
+            <div className="w-full aspect-[21/9] md:aspect-[4/1] mb-12 rounded-[2rem] overflow-hidden shadow-lg relative group">
+              {cat.coverImage ? (
+                <img 
+                  src={cat.coverImage} 
+                  alt={`${cat.title} Cover`} 
+                  className="w-full h-full object-cover" 
+                />
+              ) : (
+                <PlaceholderImage text={`${cat.title} - Cover Event`} className="!bg-pink-100/80" />
+              )}
+              <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </div>
+
+            {/* Image Grid (10 images) */}
+            <div className="columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6">
+              {[...Array(10)].map((_, i) => {
+                // Determine a pseudo-random aspect ratio based on index for a masonry look
+                const aspectClass = i % 3 === 0 ? 'aspect-[3/4]' : i % 2 === 0 ? 'aspect-square' : 'aspect-[4/3]';
+                
+                return (
+                  <div key={i} className="break-inside-avoid relative rounded-[1.5rem] overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer group">
+                    <div className={`w-full ${aspectClass}`}>
+                       <PlaceholderImage text={`Image ${i + 1}`} />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                      <span className="text-white font-semibold text-lg">{cat.title} {i + 1}</span>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
-
-          <div className="break-inside-avoid relative rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer group">
-            <div className="aspect-[3/4] w-full">
-              <PlaceholderImage text="Painting Session" />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-              <span className="text-white font-bold text-lg">Painting Session</span>
-            </div>
-          </div>
-
-          <div className="break-inside-avoid relative rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer group">
-            <div className="aspect-square w-full">
-              <PlaceholderImage text="Music Class" />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-              <span className="text-white font-bold text-lg">Music Class</span>
-            </div>
-          </div>
-
-          <div className="break-inside-avoid relative rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer group">
-            <div className="aspect-[16/9] w-full">
-              <PlaceholderImage text="Field Trip" />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-              <span className="text-white font-bold text-lg">Field Trip</span>
-            </div>
-          </div>
-
-          <div className="break-inside-avoid relative rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer group">
-            <div className="aspect-[3/4] w-full">
-              <PlaceholderImage text="Reading Corner" />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-              <span className="text-white font-bold text-lg">Reading Corner</span>
-            </div>
-          </div>
-
-          <div className="break-inside-avoid relative rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer group">
-            <div className="aspect-[4/3] w-full">
-              <PlaceholderImage text="Graduation Day" />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-              <span className="text-white font-bold text-lg">Graduation Day</span>
-            </div>
-          </div>
-
-        </div>
+        ))}
       </div>
       
     </div>

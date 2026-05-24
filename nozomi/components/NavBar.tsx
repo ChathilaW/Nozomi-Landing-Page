@@ -35,12 +35,13 @@ const NavBar = () => {
         )}>
             {/* Logo */}
             <Link href="/" className="flex items-center gap-1 lg:hover:scale-150 duration-500 z-50" onClick={() => setIsOpen(false)}>
-                <Image
-                    src="/Assets/logo-placeholder.svg"
+                  <Image 
+                    src="/assets/logo-placeholder.svg" 
+                    alt="Nozomi Logo" 
                     width={60}
                     height={60}
-                    alt="Nozomi logo"
-                />
+                    className="object-contain" 
+                  />
             </Link>
 
             {/* Mobile Menu Toggle Button */}

@@ -25,12 +25,13 @@ const HeroVideo = () => {
       {/* Full-screen video */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
-        src="/Assets/Video-placeholder.mp4"
         autoPlay
         muted
         loop
         playsInline
-      />
+      >
+        <source src="/assets/Video-placeholder.mp4" type="video/mp4" />
+      </video>
 
       {/* Dark overlay for readability */}
       <div className="absolute inset-0 bg-black/40" />

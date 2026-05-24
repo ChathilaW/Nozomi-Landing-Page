@@ -5,6 +5,7 @@ import TestimonialsSection from "@/components/TestimonialsSection"
 import CallToAction from "@/components/CallToAction"
 import Footer from "@/components/Footer"
 import SakuraBackground from "@/components/SakuraBackground"
+import BlueLotus from "@/components/BlueLotus"
 
 const HomePage = () => {
     return (
@@ -23,6 +24,7 @@ const HomePage = () => {
                 <div className="relative z-10 w-full flex flex-col items-center">
                     <AboutSection />
                     <ProgramsSection />
+                    <BlueLotus />
                     <TestimonialsSection />
                     <CallToAction />
                 </div>
