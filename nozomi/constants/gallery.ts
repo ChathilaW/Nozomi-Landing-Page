@@ -9,7 +9,7 @@ export const galleryData = [
     title: "Sports Meet",
     shortTitle: "Sports Meet",
     slug: "sports-meet",
-    coverImage: "/assets/waterfall.jpg"
+    coverImage: ""
   },
   {
     title: "Colors Day",
