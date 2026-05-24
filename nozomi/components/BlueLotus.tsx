@@ -1,8 +1,9 @@
 'use client'
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { cn } from "@/lib/utils";
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import PlaceholderImage from './PlaceholderImage';
 import { galleryData } from '@/constants/gallery';
 
@@ -12,6 +13,11 @@ interface BlueLotusProps {
 
 const BlueLotus: React.FC<BlueLotusProps> = ({ className }) => {
   const router = useRouter();
+
+  useEffect(() => {
+    // Prefetch the gallery page to make routing instantaneous
+    router.prefetch('/gallery');
+  }, [router]);
 
   return (
     <div className={cn("relative flex justify-center items-center pt-16 pb-32 md:pb-48", className)}>
@@ -67,12 +73,14 @@ const BlueLotus: React.FC<BlueLotusProps> = ({ className }) => {
                         style={{ transform: `rotate(${-angle}deg)` }}
                       >
                         {/* Dynamic counter-rotation to negate the lotus spin */}
-                        <div className="w-full h-full image-counter-spin bg-pink-50/80">
+                        <div className="w-full h-full image-counter-spin bg-pink-50/80 relative">
                           {cat.coverImage ? (
-                            <img 
+                            <Image 
                               src={cat.coverImage} 
                               alt={cat.title} 
-                              className="w-full h-full object-cover" 
+                              fill
+                              sizes="(max-width: 768px) 100vw, 33vw"
+                              className="object-cover" 
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center p-8">

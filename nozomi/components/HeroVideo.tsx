@@ -29,6 +29,7 @@ const HeroVideo = () => {
         muted
         loop
         playsInline
+        preload="auto"
       >
         <source src="/assets/Video-placeholder.mp4" type="video/mp4" />
       </video>

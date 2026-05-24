@@ -1,6 +1,7 @@
 import PlaceholderImage from "@/components/PlaceholderImage";
 import Footer from "@/components/Footer";
 import { galleryData } from "@/constants/gallery";
+import Image from "next/image";
 
 export default function GalleryPage() {
   return (
@@ -28,10 +29,12 @@ export default function GalleryPage() {
             {/* Cover Image */}
             <div className="w-full aspect-[21/9] md:aspect-[4/1] mb-12 rounded-[2rem] overflow-hidden shadow-lg relative group">
               {cat.coverImage ? (
-                <img 
+                <Image 
                   src={cat.coverImage} 
                   alt={`${cat.title} Cover`} 
-                  className="w-full h-full object-cover" 
+                  fill
+                  sizes="(max-width: 768px) 100vw, 100vw"
+                  className="object-cover" 
                 />
               ) : (
                 <PlaceholderImage text={`${cat.title} - Cover Event`} className="!bg-pink-100/80" />
