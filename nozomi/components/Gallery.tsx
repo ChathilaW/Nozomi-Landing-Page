@@ -3,11 +3,41 @@
 import PlaceholderImage from "@/components/PlaceholderImage";
 import { galleryData } from "@/constants/gallery";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { XMarkIcon, ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
 export default function Gallery() {
   const [lightboxData, setLightboxData] = useState<{ images: string[], currentIndex: number } | null>(null);
+  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
+
+  // Handle URL hash to automatically open the correct section when navigating from BlueLotus
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        setExpandedSections(prev => new Set([...prev, hash]));
+      }
+    };
+
+    // Check hash on initial load
+    handleHashChange();
+
+    // Listen for subsequent hash changes
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const toggleSection = (slug: string) => {
+    setExpandedSections(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(slug)) {
+        newSet.delete(slug);
+      } else {
+        newSet.add(slug);
+      }
+      return newSet;
+    });
+  };
 
   return (
     <div className="min-h-screen bg-white pt-32 pb-20 px-8 md:px-20 animate-fade-in">
@@ -32,46 +62,57 @@ export default function Gallery() {
             </div>
 
             {/* Cover Image */}
-            <div className="w-full aspect-[21/9] md:aspect-[4/1] mb-12 rounded-[2rem] overflow-hidden shadow-lg relative group border-4 border-pink-300">
+            <div 
+              className="w-full aspect-[21/9] md:aspect-[4/1] mb-12 rounded-[2rem] overflow-hidden shadow-lg relative group border-4 border-pink-300 cursor-pointer"
+              onClick={() => toggleSection(cat.slug)}
+            >
               {cat.coverImage ? (
                 <Image 
                   src={cat.coverImage} 
-                  alt={`${cat.title} Cover`} 
+                  alt={`${cat.title} Cover`}
                   fill
-                  sizes="(max-width: 768px) 100vw, 100vw"
-                  className="object-cover" 
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 1200px) 100vw, 1200px"
                 />
               ) : (
-                <PlaceholderImage text={`${cat.title} - Cover Event`} className="!bg-pink-100/80" />
+                <PlaceholderImage text={cat.title} className="w-full h-full rounded-[2rem]" />
               )}
-              <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              
+              {/* Click Overlay */}
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span className="bg-white/95 text-pink-500 font-bold px-8 py-4 rounded-full shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                  {expandedSections.has(cat.slug) ? "Close Gallery" : "View Gallery"}
+                </span>
+              </div>
             </div>
 
             {/* Image Grid */}
-            <div className="columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6">
-              {cat.images?.map((imgSrc, i) => {
-                return (
-                  <div 
-                    key={i} 
-                    className="break-inside-avoid relative rounded-[1.5rem] overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer group"
-                    onClick={() => setLightboxData({ images: cat.images || [], currentIndex: i })}
-                  >
-                    <Image 
-                      src={imgSrc} 
-                      alt={`${cat.title} ${i + 1}`}
-                      width={800}
-                      height={800}
-                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                      style={{ width: '100%', height: 'auto' }}
-                      className="block"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6 pointer-events-none">
-                      <span className="text-white font-semibold text-lg">{cat.title}</span>
+            {expandedSections.has(cat.slug) && (
+              <div className="columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6 animate-fade-in">
+                {cat.images?.map((imgSrc, i) => {
+                  return (
+                    <div 
+                      key={i} 
+                      className="break-inside-avoid relative rounded-[1.5rem] overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer group"
+                      onClick={() => setLightboxData({ images: cat.images || [], currentIndex: i })}
+                    >
+                      <Image 
+                        src={imgSrc} 
+                        alt={`${cat.title} ${i + 1}`}
+                        width={800}
+                        height={800}
+                        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        style={{ width: '100%', height: 'auto' }}
+                        className="block"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6 pointer-events-none">
+                        <span className="text-white font-semibold text-lg">{cat.title}</span>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         ))}
       </div>
