@@ -1,38 +1,44 @@
 export const galleryData = [
   {
-    title: "New Years Festival",
+    title: "New Year's Festival",
     shortTitle: "New Years",
     slug: "new-years-festival",
-    coverImage: "" // Add your image URL here, e.g., "/images/new-years.jpg"
+    coverImage: "/assets/gallery/New Year's Festival/Overview.jpg",
+    images: Array.from({ length: 10 }, (_, i) => `/assets/gallery/New Year's Festival/${String(i + 1).padStart(3, '0')}.jpg`)
   },
   {
     title: "Sports Meet",
     shortTitle: "Sports Meet",
     slug: "sports-meet",
-    coverImage: ""
+    coverImage: "/assets/gallery/Sport Meet/Overview.jpg",
+    images: Array.from({ length: 9 }, (_, i) => `/assets/gallery/Sport Meet/${String(i + 1).padStart(3, '0')}.jpg`)
   },
   {
     title: "Colors Day",
     shortTitle: "Colors Day",
     slug: "colors-day",
-    coverImage: ""
+    coverImage: "/assets/gallery/Colors Day/Overview.jpg",
+    images: Array.from({ length: 10 }, (_, i) => `/assets/gallery/Colors Day/${String(i + 1).padStart(3, '0')}.jpg`)
   },
   {
-    title: "Concert",
-    shortTitle: "Concert",
-    slug: "concert",
-    coverImage: ""
+    title: "Shapes Day",
+    shortTitle: "Shapes Day",
+    slug: "shapes-day",
+    coverImage: "/assets/gallery/Shapes Day/Overview.jpg",
+    images: Array.from({ length: 10 }, (_, i) => `/assets/gallery/Shapes Day/${String(i + 1).padStart(3, '0')}.jpg`)
   },
   {
-    title: "English Day",
-    shortTitle: "English Day",
-    slug: "english-day",
-    coverImage: ""
+    title: "Environmental Activities",
+    shortTitle: "Environmental Activities",
+    slug: "environmental-activities",
+    coverImage: "/assets/gallery/Environmental Activities/Overview.jpg",
+    images: Array.from({ length: 10 }, (_, i) => `/assets/gallery/Environmental Activities/${String(i + 1).padStart(3, '0')}.jpg`)
   },
   {
     title: "Vesak Festival",
     shortTitle: "Vesak",
     slug: "vesak-festival",
-    coverImage: ""
+    coverImage: "/assets/gallery/Vesak Festival/Overview.jpg",
+    images: Array.from({ length: 9 }, (_, i) => `/assets/gallery/Vesak Festival/${String(i + 1).padStart(3, '0')}.jpg`)
   }
 ];
