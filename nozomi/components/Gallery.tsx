@@ -48,19 +48,22 @@ export default function Gallery() {
             </div>
 
             {/* Image Grid */}
-            <div className="flex flex-wrap gap-4 md:gap-6 justify-center">
+            <div className="columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6">
               {cat.images?.map((imgSrc, i) => {
                 return (
                   <div 
                     key={i} 
-                    className="relative rounded-[1.5rem] overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer group flex-shrink-0"
+                    className="break-inside-avoid relative rounded-[1.5rem] overflow-hidden shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer group"
                     onClick={() => setLightboxData({ images: cat.images || [], currentIndex: i })}
                   >
-                    <img 
+                    <Image 
                       src={imgSrc} 
                       alt={`${cat.title} ${i + 1}`}
-                      loading="lazy"
-                      className="h-48 sm:h-56 md:h-64 lg:h-72 w-auto block"
+                      width={800}
+                      height={800}
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      style={{ width: '100%', height: 'auto' }}
+                      className="block"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6 pointer-events-none">
                       <span className="text-white font-semibold text-lg">{cat.title}</span>

@@ -81,6 +81,7 @@ const BlueLotus: React.FC<BlueLotusProps> = ({ className }) => {
                               fill
                               sizes="(max-width: 768px) 100vw, 33vw"
                               className="object-cover" 
+                              priority
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center p-8">

@@ -29,7 +29,7 @@ const HeroVideo = () => {
         muted
         loop
         playsInline
-        preload="auto"
+        poster="/assets/gallery/Sports Meet/Overview.jpg"
       >
         <source src="/assets/Video-placeholder.mp4" type="video/mp4" />
       </video>
