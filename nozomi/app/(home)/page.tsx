@@ -1,4 +1,4 @@
-import HeroVideo from "@/components/HeroVideo"
+import HeroImage from "@/components/HeroImage"
 import AboutSection from "@/components/AboutSection"
 import ProgramsSection from "@/components/ProgramsSection"
 import TestimonialsSection from "@/components/TestimonialsSection"
@@ -12,7 +12,7 @@ const HomePage = () => {
         <div className="relative w-full">
             {/* Sticky Hero Video Container */}
             <div className="sticky top-0 w-full h-screen z-0">
-                <HeroVideo />
+                <HeroImage />
             </div>
 
             {/* Content that scrolls OVER the Hero Video */}
